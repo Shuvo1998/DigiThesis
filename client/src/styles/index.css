@@ -1,0 +1,51 @@
+/* client/src/styles/index.css */
+/* Google Fonts styles, make sure to match the import in public/index.html */
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Poppins will be the default font */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f8f9fa;
+    /* Light background for a clean look */
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
+    /* Roboto for headings */
+}
+
+/* Ensure full height for sticky footer */
+#root,
+html,
+body {
+    height: 100%;
+}
+
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+/* Customizing Bootstrap variables for a modern feel (optional) */
+/* You can override Bootstrap's default colors if you want a custom theme */
+:root {
+    --bs-primary: #0056b3;
+    /* A slightly darker primary blue */
+    --bs-secondary: #6c757d;
+    --bs-success: #28a745;
+    --bs-danger: #dc3545;
+    --bs-warning: #ffc107;
+    --bs-info: #17a2b8;
+    --bs-light: #f8f9fa;
+    --bs-dark: #343a40;
+}
