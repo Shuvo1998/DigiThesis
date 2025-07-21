@@ -1,29 +1,31 @@
 // server/server.js
-require('dotenv').config(); // .env ফাইল থেকে এনভায়রনমেন্ট ভেরিয়েবল লোড করার জন্য
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/authRoutes');
-const cors = require('cors'); // CORS সমস্যা এড়াতে
-const path = require('path'); // ফাইল আপলোডের জন্য
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware Setup
-app.use(cors()); // CORS সক্ষম করুন
-app.use(express.json()); // JSON বডি পার্স করার জন্য
+app.use(cors());
+app.use(express.json());
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected successfully'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Routes (আমরা পরে এগুলো তৈরি করব এবং এখানে যোগ করব)
-app.use('/api/auth', authRoutes); // Auth routes will be under /api/auth
+// Routes
+const authRoutes = require('./routes/authRoutes');
+const thesisRoutes = require('./routes/thesisRoutes'); // <--- NOW THIS IMPORT WILL WORK
+
+app.use('/api/auth', authRoutes);
+app.use('/api/theses', thesisRoutes); // <--- NOW THIS app.use WILL WORK
 
 
-
-// Serve static files for uploaded documents (later used for thesis files)
+// Serve static files for uploaded documents
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Basic Root Route
